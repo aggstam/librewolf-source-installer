@@ -1,0 +1,2 @@
+ignore noexec ${HOME}
+whitelist ${HOME}/librewolf-source-installer/build/librewolf
