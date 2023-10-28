@@ -1,0 +1,4 @@
+[submodule "source"]
+	path = source
+	url = https://codeberg.org/librewolf/source.git
+	ignore = all
