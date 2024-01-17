@@ -1,7 +1,7 @@
 # librewolf-source-installer
 A helper script extracting and installing a packaged [Liberwolf](https://librewolf.net/) source tar archive.
 <br>
-We are using [source](https://codeberg.org/librewolf/source) repo as a git submodule, but you can use this
+We are using [source](https://codeberg.org/librewolf/source) repo as a `git` submodule, but you can use this
 script to extract from another path.
 
 ## Prerequisites
@@ -17,13 +17,20 @@ To pull updates:
 % git pull --recurse-submodules
 ```
 Then, you can follow their [build](https://codeberg.org/librewolf/source#building-with-this-repository)
-instructions.
-### TLDR
+instructions, mirrored in the following build section, along with corresponding `make` targets, for convenience.
+<br>
+Additionally, a `docker` builder image is provided for building the source code,
+without setting up a development environment.
+### Build source
 #### Initial pull
 ```
 % cd source
 % make dir
 % make bootstrap
+```
+or
+```
+% make bootstrap-source
 ```
 #### Build and package
 ```
@@ -31,6 +38,21 @@ instructions.
 % make build
 % make package
 ```
+or
+```
+% make build-source
+```
+#### Using docker
+On initial pull, we can create the `docker` builder image and bootstrap the source repo:
+```
+% docker build . -t librewolf-source-installer:builder -f ./docker/builder.Dockerfile
+% docker run -it -v .:/repo librewolf-source-installer:builder /bin/sh -c "make bootstrap-source"
+```
+After `docker` builder has been created and bootstrapped, we can build the source code:
+```
+% docker run -it -v .:/repo librewolf-source-installer:builder /bin/sh -c "make build-source"
+```
+Keep in mind that `docker` uses `root` as its user, so `source` folder access rights will be moved from your user.
 
 ## Usage
 Script provides the following Make targets:
@@ -69,9 +91,9 @@ build argument, like:
 If you are using the source folder to build Librewolf, you should remove old packaged
 versions, once you pulled and builded a newer one, to preserve your disk space.
 ### Firejail
-A librewolf.local firejail configuration file is provided.
+A `librewolf.local` `firejail` configuration file is provided.
 <br>
-If the repo folder is not on home root folder (~/), you should update it to contain
+If the repo folder is not on home root folder `~/`, you should update it to contain
 the proper path.
 
 ## Credits

@@ -11,6 +11,16 @@ TAR = source/librewolf-$(VERSION)-$(RELEASE).*.tar.bz2
 
 all: extract
 
+bootstrap-source:
+	@echo "Bootstraping source folder"
+	$(MAKE) -C source/ dir
+	$(MAKE) -C source/ bootstrap
+
+build-source:
+	@echo "Building source folder"
+	$(MAKE) -C source/ build
+	$(MAKE) -C source/ package
+
 build-folder:
 	@echo "Generating build folder"
 	mkdir -p $(BUILD_FOLDER)
@@ -51,4 +61,4 @@ uninstall: clean
 	@echo "Removing desktop entry"
 	rm $(HOME)/.local/share/applications/librewolf.desktop
 
-.PHONY: all build-folder clean extract install desktop firejail uninstall
+.PHONY: all bootstrap-source build-source build-folder clean extract install desktop firejail uninstall
