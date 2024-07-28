@@ -10,7 +10,7 @@ you can use the `source` submodule folder.
 <br>
 On initial pull:
 ```
-% git submodule update --init
+% git submodule update --init --recursive
 ```
 To pull updates:
 ```
