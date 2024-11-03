@@ -3,6 +3,7 @@ DESTDIR = /usr
 REPO_PATH = $(shell pwd)
 BUILD_FOLDER = $(REPO_PATH)/build
 FIREJAIL_CONFIG_FOLDER = $(HOME)/.config/firejail
+ICON_PATH = $(BUILD_FOLDER)/librewolf/browser/chrome/icons/default/default128.png
 
 # Tar to extract
 VERSION = $(shell cat ./source/version)
@@ -28,8 +29,6 @@ build-folder:
 clean:
 	@echo "Removing build folder"
 	rm -rf $(BUILD_FOLDER)
-	@echo "Reset .desktop file..."
-	sed -i -e "s|Icon=.*|Icon=icon.svg|g" librewolf.desktop
 
 extract: clean build-folder
 	@echo "Extracting tar: $(TAR)"
@@ -42,9 +41,10 @@ install: build-folder
 	
 desktop:
 	@echo "Updating and installing .desktop file..."
-	sed -i -e "s|Icon=.*|Icon=$(REPO_PATH)/icon.svg|g" librewolf.desktop
+	cp -f librewolf.desktop $(BUILD_FOLDER)
+	sed -i -e "s|Icon=.*|Icon=$(ICON_PATH)|g" $(BUILD_FOLDER)/librewolf.desktop
 	mkdir -p $(HOME)/.local/share/applications
-	cp librewolf.desktop $(HOME)/.local/share/applications
+	cp -f $(BUILD_FOLDER)/librewolf.desktop $(HOME)/.local/share/applications
 
 firejail:
 	@echo "Creating firejail config"
