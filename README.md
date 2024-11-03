@@ -92,9 +92,6 @@ If you are using the source folder to build Librewolf, you should remove old pac
 versions, once you pulled and builded a newer one, to preserve your disk space.
 ### Firejail
 A `librewolf.local` `firejail` configuration file is provided.
-<br>
-If the repo folder is not on home root folder `~/`, you should update it to contain
-the proper path.
 
 ## Credits
 Massive thanks to the Librewolf team for making such an awesome browser!

@@ -48,8 +48,10 @@ desktop:
 
 firejail:
 	@echo "Creating firejail config"
+	cp -f librewolf.local $(BUILD_FOLDER)
+	sed -i -e "s|whitelist.*|whitelist $(BUILD_FOLDER)/librewolf|g" $(BUILD_FOLDER)/librewolf.local
 	mkdir -p $(FIREJAIL_CONFIG_FOLDER)
-	cp librewolf.local $(FIREJAIL_CONFIG_FOLDER)
+	cp -f $(BUILD_FOLDER)/librewolf.local $(FIREJAIL_CONFIG_FOLDER)
 	@echo "Changing to superuser to create the firejail symlink"
 	su -c "ln -sf /usr/bin/firejail /usr/local/bin/librewolf"
 
