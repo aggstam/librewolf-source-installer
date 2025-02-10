@@ -8,7 +8,7 @@ ICON_PATH = $(BUILD_FOLDER)/librewolf/browser/chrome/icons/default/default128.pn
 # Tar to extract
 VERSION = $(shell cat ./source/version)
 RELEASE = $(shell cat ./source/release)
-TAR = source/librewolf-$(VERSION)-$(RELEASE).*.tar.bz2
+TAR = source/librewolf-$(VERSION)-$(RELEASE).*.tar.xz
 
 all: extract
 
