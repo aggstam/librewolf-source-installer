@@ -1,7 +1,7 @@
 # librewolf-source-installer
 A helper script extracting and installing a packaged [Liberwolf](https://librewolf.net/) source tar archive.
 <br>
-We are using [source](https://codeberg.org/librewolf/source) repo as a `git` submodule, but you can use this
+We are using [source](https://librewolf.dev/librewolf/source) repo as a `git` submodule, but you can use this
 script to extract from another path.
 
 ## Prerequisites
@@ -16,7 +16,7 @@ To pull updates:
 ```shell
 $ git pull --recurse-submodules
 ```
-Then, you can follow their [build](https://codeberg.org/librewolf/source#building-with-this-repository)
+Then, you can follow their [build](https://librewolf.dev/librewolf/source#build-repository)
 instructions, mirrored in the following build section, along with corresponding `make` targets, for convenience.
 <br>
 Additionally, a `docker` builder image is provided for building the source code,
