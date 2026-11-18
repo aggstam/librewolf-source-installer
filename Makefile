@@ -6,8 +6,8 @@ FIREJAIL_CONFIG_FOLDER = $(HOME)/.config/firejail
 ICON_PATH = $(BUILD_FOLDER)/librewolf/browser/chrome/icons/default/default128.png
 
 # Tar to extract
-VERSION = $(shell cat ./source/version)
-RELEASE = $(shell cat ./source/release)
+VERSION = $(shell grep -Po 'VERSION = \K.*' source/Makefile)
+RELEASE = $(shell grep -Po 'RELEASE = \K.*' source/Makefile)
 TAR = source/librewolf-$(VERSION)-$(RELEASE).*.tar.xz
 
 all: extract
